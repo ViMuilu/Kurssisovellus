@@ -1,0 +1,33 @@
+Menu
+{% if session.username %}
+<p>User: {{ session.username }}</p>
+<a href="/logout">Log out</a>
+{% endif %}
+
+{% if session.accountType == 1 %}
+<p>Available courses:</p>
+
+{% for course in courses %}
+<form action="/courseInfo" method="POST">
+    <input type="submit" value="{{course[0]}}">
+</form>
+{% endfor %}
+
+
+<p>Your courses:</p>
+
+{% endif %}
+
+{% if session.accountType == 2 %}
+<form action="/newCourse" method="POST">
+    <p><button type="submit" value="Create a new course"></p>   
+</form>
+<p>Courses:</p>
+
+
+<hr>
+{% for course in courses %}
+{{ course[0] }}
+<hr>
+{% endfor %}
+{% endif %}

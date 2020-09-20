@@ -1,4 +1,6 @@
-# Ominaisuudet
+# Kurssisovellus
+
+## Ominaisuudet
 
 Käyttäjä voi luoda kursseja ja asettaa kursseille tehtäviä.
 
