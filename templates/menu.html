@@ -6,9 +6,9 @@ Menu
 
 {% if session.accountType == 1 %}
 <p>Available courses:</p>
-
 {% for course in courses %}
-<form action="/courseInfo" method="POST">
+<form action="/courseInfo" method="POST">  
+    <input type="hidden" name="name" value="{{course[0]}}"> 
     <input type="submit" value="{{course[0]}}">
 </form>
 {% endfor %}
@@ -20,14 +20,14 @@ Menu
 
 {% if session.accountType == 2 %}
 <form action="/newCourse" method="POST">
-    <p><button type="submit" value="Create a new course"></p>   
+    <p><input type="submit" value="Create a new course"></p>   
 </form>
+
 <p>Courses:</p>
-
-
-<hr>
 {% for course in courses %}
-{{ course[0] }}
-<hr>
+<form action="/courseInfo" method="POST">  
+    <input type="hidden" name="name" value="{{course[0]}}"> 
+    <input type="submit" value="{{course[0]}}">
+</form>
 {% endfor %}
 {% endif %}

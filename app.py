@@ -41,9 +41,8 @@ def login():
 def loggedIn():
     rs = db.session.execute("SELECT name FROM courses")
     courses = rs.fetchall()
-    rs1 = db.session.execute("SELECT description FROM courses")
-    desc = rs1.fetchall()
-    return render_template("menu.html", courses = courses, desc = desc)   
+
+    return render_template("menu.html", courses = courses, )   
 
 @app.route("/logout")
 def logout():
@@ -67,15 +66,17 @@ def CreateANew():
 
 @app.route("/courseInfo",methods=["POST"])
 def courseInfo():
-    name = request.form["value"];
-    return render_template("courseInfo.html", name = name)
+    name = request.form["name"];
+    rs1 = db.session.execute("SELECT description FROM courses WHERE name=:name",{"name":name })
+    desc = rs1.fetchall()
+    return render_template("courseInfo.html", desc = desc)
 
 @app.route("/newCourse",methods=["POST"])
 def newCourse():
     return render_template("newCourse.html")
 
 
-@app.route("/course",methods=["POST"])
+@app.route("/course", methods=["POST"])
 def course():
     name = request.form["name"]
     description = request.form["desc"]
