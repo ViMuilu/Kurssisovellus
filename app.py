@@ -20,6 +20,7 @@ def login():
     sql = "SELECT password FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()   
+    
     if user == None:       
         return redirect("/")
     else:
@@ -42,7 +43,7 @@ def loggedIn():
 
     rs = db.session.execute("SELECT name FROM courses")
     courses = rs.fetchall()
-    # gets user id maybe own method?
+
     name = session["username"]
     
     rsuser = db.session.execute("SELECT id FROM users WHERE username=:name",{"name":name })

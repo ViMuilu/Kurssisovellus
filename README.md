@@ -17,3 +17,11 @@ Kursseilla on yhteenvetosivu joista opiskelija näkee omat suoritetut tehtävät
 Kursseista on yhteenvetosivu josta opiskelija näkee suorittetu kurssit.
 
 Heroku(https://protected-ridge-97744.herokuapp.com/)
+
+## Suraavan viikon tavoitteet
+
+Kurssitehtävä toiminto loppuun.
+
+Ohjelman rakenne järkeväksi.
+
+PRG-malli lomakkeille.
