@@ -8,4 +8,7 @@
     </p>
     <input type="submit" value="Create a new account">
 </form>
+{% if session.userExists %}
+<p>Account with this username allready exists</p>
+{% endif %}
 

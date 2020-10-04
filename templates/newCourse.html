@@ -1,5 +1,7 @@
+
 <form action="/course" method="POST">
+    <input type="hidden" name = "teach" value={{session.username}}>
     <p>Course name: <input type="text" name="name"></p>
-    <p>Course Description: <input type="text" name="desc"></p>
+    <p>Course description: <input type="text" name="desc"></p>
     <input type="submit" value="Create a new course">
 </form>

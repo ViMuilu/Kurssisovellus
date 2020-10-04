@@ -15,6 +15,15 @@ Menu
 
 
 <p>Your courses:</p>
+{% for course in userCourses %}
+
+<form action="/courseInfo" method="POST"> 
+    <input type="hidden" name="onCourse" value="1"> 
+    <input type="hidden" name="name" value="{{course}}"> 
+    <input type="submit" value="{{course}}">
+</form>
+
+{% endfor %}
 
 {% endif %}
 
@@ -30,4 +39,12 @@ Menu
     <input type="submit" value="{{course[0]}}">
 </form>
 {% endfor %}
+<p>Courses that you teach</p>
+{% for course in teacherCourses %}
+<form action="/courseInfo" method="POST">  
+    <input type="hidden" name="name" value="{{course[0]}}"> 
+    <input type="submit" value="{{course[0]}}">
+</form>
+{% endfor %}
+
 {% endif %}
