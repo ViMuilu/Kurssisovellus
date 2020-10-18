@@ -1,13 +1,36 @@
-<form action="/CreateANew" method="POST">
+<script>
+    function checkLenght() {
+        var nameLenght = document.getElementById("1").value.length;
+        var passwordLenght = document.getElementById("2").value.length;
+        if (nameLenght < 4 || passwordLenght < 4){
+            alert("Username or password need to be longer than 3 characters");
+            return false
+        }
+        var checkStudent = document.getElementById("3").checked;
+        var checkTeach = document.getElementById("4").checked;
+        if (checkStudent == false &&  checkTeach == false){
+            alert("You must choose an account type");
+            return false
+        }
+        return true
+    }
+</script>
+
+
+
+<form onsubmit="return checkLenght()"  action="/createANew" method="POST" >
     <p>Name:
-    <input type="text" name="username"></p>
+    <input type="text" name="username" id="1"></p>
     <p>Password:
-    <input type="password" name="password"></p>
-    <p><input type="radio" name="type" value="1"> Student
-    <input type="radio" name="type" value="2"> Teacher
+    <input type="password" name="password" id="2"></p>
+    <p><input type="radio" name="type" value="1" id="3"> Student
+    <input type="radio" name="type" value="2" id="4"> Teacher
     </p>
     <input type="submit" value="Create a new account">
 </form>
+
+
+
 {% if session.userExists %}
 <p>Account with this username allready exists</p>
 {% endif %}

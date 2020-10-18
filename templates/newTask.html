@@ -1,0 +1,45 @@
+{% if session.username %}
+
+<script>
+    function checkLenght() {
+        var question = document.getElementById("1").value.length;
+        var btns = document.getElementById("2").value;
+        var answerC = document.getElementById("3").value;
+        if (question < 4 || btns.length < 4 || answerC.length < 4){
+            alert("question and answer buttons and correct answer should be longer than 3 characters");
+            return false
+        }
+        
+        if (!btns.includes(answerC)){
+            alert("Answers does not contain correct answer check spelling on both");
+            return false
+        }
+        return true
+    }
+</script>
+<p>On this page you can create a multiple choice question.</p>
+
+<form onsubmit="return checkLenght()" action="/createTask" method="POST">
+    
+    <input type="hidden" name ="course" value="{{session.courseName}}">
+    Question: 
+    <p><input type="text" name="question" id="1"></p>
+
+    <p>To create buttons for different answers separate them with "," and " " ie. answer1, answer2, answer3...</p>
+
+    Answer buttons: 
+    <p><input type="text" name="btn" id=2></p>
+    
+    Correct answer:
+    <p><input type="text" name="correctAnswer" id="3"></p>
+    <input type="submit" value="Create question">
+</form>
+
+<form action="/exit">
+    <input type="submit" value="Return to menu">
+</form>
+{%else%}
+<p>You need to login to view this page</p>
+<a href="/login" method = "GET">Login</a>
+
+{%endif%}

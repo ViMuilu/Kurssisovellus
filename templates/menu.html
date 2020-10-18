@@ -1,15 +1,16 @@
 Menu
 {% if session.username %}
 <p>User: {{ session.username }}</p>
-<a href="/logout">Log out</a>
+<a href="/login" method = "GET">Log out</a>
 {% endif %}
 
 {% if session.accountType == 1 %}
 <p>Available courses:</p>
 {% for course in courses %}
-<form action="/courseInfo" method="POST">  
-    <input type="hidden" name="name" value="{{course[0]}}"> 
-    <input type="submit" value="{{course[0]}}">
+<form action="/courseInfo" method="POST"> 
+    <input type="hidden" name="onCourse" value="0"> 
+    <input type="hidden" name="name" value="{{course}}"> 
+    <input type="submit" value="{{course}}">
 </form>
 {% endfor %}
 
@@ -17,8 +18,7 @@ Menu
 <p>Your courses:</p>
 {% for course in userCourses %}
 
-<form action="/courseInfo" method="POST"> 
-    <input type="hidden" name="onCourse" value="1"> 
+<form action="/courseInfo" method="POST">
     <input type="hidden" name="name" value="{{course}}"> 
     <input type="submit" value="{{course}}">
 </form>
@@ -28,22 +28,23 @@ Menu
 {% endif %}
 
 {% if session.accountType == 2 %}
-<form action="/newCourse" method="POST">
+<form action="/course" method="GET">
     <p><input type="submit" value="Create a new course"></p>   
 </form>
 
 <p>Courses:</p>
 {% for course in courses %}
 <form action="/courseInfo" method="POST">  
-    <input type="hidden" name="name" value="{{course[0]}}"> 
-    <input type="submit" value="{{course[0]}}">
+    <input type="hidden" name="name" value="{{course}}"> 
+    <input type="submit" value="{{course}}">
 </form>
 {% endfor %}
+
 <p>Courses that you teach</p>
 {% for course in teacherCourses %}
 <form action="/courseInfo" method="POST">  
-    <input type="hidden" name="name" value="{{course[0]}}"> 
-    <input type="submit" value="{{course[0]}}">
+    <input type="hidden" name="name" value="{{course}}"> 
+    <input type="submit" value="{{course}}">
 </form>
 {% endfor %}
 

@@ -1,7 +1,31 @@
+{% if session.username %}
+<script>
+    function checkLenght() {
+        var nameLenght = document.getElementById("1").value.length;
+        var descLenght = document.getElementById("2").value.length;
+        if (nameLenght < 4 || descLenght < 4){
+            alert("Course name or description need to be longer than 3 characters");
+            return false
+        }
+        return true
+    }
+</script>
 
-<form action="/course" method="POST">
+<form onsubmit="return checkLenght();" action="/course" method="POST">
     <input type="hidden" name = "teach" value={{session.username}}>
-    <p>Course name: <input type="text" name="name"></p>
-    <p>Course description: <input type="text" name="desc"></p>
+    <p>Course name: <input type="text" name="name" id="1"></p>
+    <p>Course description: <textarea name="desc" rows="3" cols="50" id = "2"></textarea>
+    <input type="hidden" name = "courses" value={{session.courses}} id="2">
     <input type="submit" value="Create a new course">
 </form>
+<p>{{session.error}}</p>
+
+<form action="/exit">
+    <input type="submit" value="Return to menu">
+</form>
+
+{%else%}
+<p>You need to login to view this page</p>
+<a href="/login" method = "GET">Login</a>
+
+{%endif%}

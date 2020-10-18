@@ -1,0 +1,25 @@
+
+{% if session.username %}
+{{session.courseName}}
+<script>
+    function checkLenght() {
+        var descLenght = document.getElementById("1").value.length;
+        
+        if (descLenght < 4 ){
+            alert("Description needs to be longer than 3 characters");
+            return false
+        } 
+        return true
+    }
+</script>
+<form onsubmit = "return checkLenght()" action="/editDesc" method="POST">
+    <p>New description:</p>
+    <textarea name="description" rows="3" cols="50" id="1"></textarea>
+    <p><input type="submit" value="Change course description"></p>
+</form>
+<p><a href="/courseInfo" method = "GET">Return</a></p>
+{%else%}
+<p>You need to login to view this page</p>
+<a href="/login" method = "GET">Login</a>
+
+{%endif%}

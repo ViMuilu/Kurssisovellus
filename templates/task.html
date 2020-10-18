@@ -1,0 +1,19 @@
+{% if session.username %}
+
+{{question}}
+
+{%for answer in answers%}
+<form action="/checkAnswer" method="POST">
+    <input type="hidden" name = "canswer" value="{{correctAnswer}}">
+    <input type="hidden" name = "answer" value="{{answer}}">
+    <input type="hidden" name = "taskname" value="{{question}}">
+    <input type="submit" value="{{answer}}">
+</form>
+{%endfor%}
+<a href="javascript:history.go(-1)">Return</a>
+
+{%else%}
+<p>You need to login to view this page</p>
+<a href="/login" method = "GET">Login</a>
+
+{%endif%}

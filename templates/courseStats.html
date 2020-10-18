@@ -1,0 +1,7 @@
+{% if session.username %}
+<a href="javascript:history.go(-1)">Return</a>
+
+{% for stats in studentsAndTasks %}
+<p>{{stats}}</p>
+{%endfor%}
+{%endif%}
