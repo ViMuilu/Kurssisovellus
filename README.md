@@ -1,6 +1,7 @@
 # Kurssisovellus
 
 [Heroku](https://protected-ridge-97744.herokuapp.com/)
+
 [Tietokanta](https://github.com/ViMuilu/Kurssisovellus/blob/master/schema.sql)
 
 ## Käyttöohje
