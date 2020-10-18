@@ -16,22 +16,31 @@
     }
 </script>
 
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<title>Courseapp</title>
+<div class="container">
+    <div class="row">
+        <div class="col-5">
+            <h1>Create a new account</h1>
+            <form onsubmit="return checkLenght()"  action="/createANew" method="POST" >
+                <p>Name:
+                <input type="text" name="username" id="1"></p>
+                <p>Password:
+                <input type="password" name="password" id="2"></p>
+                <p><input type="radio" name="type" value="1" id="3"> Student
+                <input type="radio" name="type" value="2" id="4"> Teacher
+                </p>
+                <input type="submit" value="Create a new account">
+                {% if session.userExists %}
+                <p>Account with this username allready exists</p>
+                {% endif %}
+
+            </form>
+        </div>
+    </div>
+</div>
 
 
-<form onsubmit="return checkLenght()"  action="/createANew" method="POST" >
-    <p>Name:
-    <input type="text" name="username" id="1"></p>
-    <p>Password:
-    <input type="password" name="password" id="2"></p>
-    <p><input type="radio" name="type" value="1" id="3"> Student
-    <input type="radio" name="type" value="2" id="4"> Teacher
-    </p>
-    <input type="submit" value="Create a new account">
-</form>
-
-
-
-{% if session.userExists %}
-<p>Account with this username allready exists</p>
-{% endif %}
 

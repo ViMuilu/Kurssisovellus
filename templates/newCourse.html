@@ -1,3 +1,9 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<title>Courseapp</title>
+
+
 {% if session.username %}
 <script>
     function checkLenght() {
@@ -10,19 +16,29 @@
         return true
     }
 </script>
-
-<form onsubmit="return checkLenght();" action="/course" method="POST">
-    <input type="hidden" name = "teach" value={{session.username}}>
-    <p>Course name: <input type="text" name="name" id="1"></p>
-    <p>Course description: <textarea name="desc" rows="3" cols="50" id = "2"></textarea>
-    <input type="hidden" name = "courses" value={{session.courses}} id="2">
-    <input type="submit" value="Create a new course">
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h1>Create a new course</h1>
+        </div>
+        <div class="col-6">
+            <form action="/exit">
+                <input type="submit" value="Return to menu">
+            </form>
+        </div>
+    </div>   
+    <div class="row">
+        <form onsubmit="return checkLenght();" action="/course" method="POST">
+            <input type="hidden" name = "teach" value={{session.username}}>
+            <p>Course name: <input type="text" name="name" id="1"></p>
+            <p>Course description: 
+                <p><textarea name="desc" rows="3" cols="50" id = "2"></textarea></p>
+            <input type="hidden" name = "courses" value={{session.courses}} id="2">
+            <input type="submit" value="Create a new course">
+        </form>
+    </div> 
+</div>
 <p>{{session.error}}</p>
-
-<form action="/exit">
-    <input type="submit" value="Return to menu">
-</form>
 
 {%else%}
 <p>You need to login to view this page</p>

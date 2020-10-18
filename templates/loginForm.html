@@ -1,16 +1,30 @@
-<p>Courseapp</p>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
-<form action="/login" method="POST">
-<p>Name:
-<input type="text" name="username"></p>
-<p>Password:
-<input type="password" name="password"></p>
-<input type="submit" value="Login">
+<title>Courseapp</title>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h1>Courseapp Login</h1>
+            <form action="/login" method="POST">
+                <p>Name:
+                    <p>
+                        <input type="text" name="username">
+                <p>Password:
+                    <p><input type="password" name="password">
+                        <p><input type="submit" value="Login">
+                            <p>{{message}}
+            </form>
+            <form action="/createANew"  method="GET">
+               
+                <p><input type="submit" value="Create a new account">
+            </form>
+        </div>      
+    </div>
+</div>
 
-</form>
-<form action="/createANew"  method="GET">
-    <input type="submit" value="Create a new account">
-</form>
-{{message}}
+
+
+
 
 

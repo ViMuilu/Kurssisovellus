@@ -153,7 +153,7 @@ def createTask():
         
         tasks.addTask(courseId, question, answer, correctAnswer)
        
-        return redirect("/loggedIn")
+        return redirect("/courseInfo")
 
 @app.route("/task",methods=["POST"])
 def task():
@@ -228,3 +228,10 @@ def getcourseStudentsStats():
         studentsAndTasks.append(users.getName(student[0]) + " Completed tasks: " + str(doneTasks) + "/" + str(t))
     
     return render_template("courseStats.html", studentsAndTasks = studentsAndTasks)
+
+@app.route("/leaveCourse",methods=["POST"])
+def leaveCourses():
+    courseId = courses.getId(request.form["name"])
+    userId = users.getId(session["username"])
+    courses.leaveCourse(userId,courseId[0])
+    return redirect("/loggedIn")

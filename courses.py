@@ -51,7 +51,7 @@ def getCourseDescription(courseName):
     rs1 = db.session.execute("SELECT description FROM courses WHERE name=:name",{"name":courseName})
     desc = rs1.fetchone()[0]
     return desc
-    
+
 def deleteCourse(courseName):
     db.session.execute("DELETE FROM courses WHERE name=:name",{"name":courseName})
     db.session.commit()
@@ -64,3 +64,7 @@ def getCourseStudents(courseId):
     sql = "SELECT id_user FROM userCourses WHERE id_course=:id_course"
     result = db.session.execute(sql, {"id_course":courseId})
     return result.fetchall()
+
+def leaveCourse(userId,courseId):
+    db.session.execute("DELETE FROM userCourses WHERE id_user=:id_user AND id_course=:id_course",{"id_user":userId,"id_course":courseId})
+    db.session.commit()

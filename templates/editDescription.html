@@ -1,6 +1,10 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<title>Courseapp</title>
 
 {% if session.username %}
-{{session.courseName}}
+
 <script>
     function checkLenght() {
         var descLenght = document.getElementById("1").value.length;
@@ -12,12 +16,23 @@
         return true
     }
 </script>
-<form onsubmit = "return checkLenght()" action="/editDesc" method="POST">
-    <p>New description:</p>
-    <textarea name="description" rows="3" cols="50" id="1"></textarea>
-    <p><input type="submit" value="Change course description"></p>
-</form>
-<p><a href="/courseInfo" method = "GET">Return</a></p>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h1>Edit {{session.courseName}} description</h1>
+        </div>
+        <div class="col-6">
+            <p><a href="/courseInfo" method = "GET">Return</a></p>
+        </div>
+    </div>
+    <div class="row">
+        <form onsubmit = "return checkLenght()" action="/editDesc" method="POST">
+            <p>New description:</p>
+            <textarea name="description" rows="3" cols="50" id="1"></textarea>
+            <p><input type="submit" value="Change course description"></p>
+        </form>
+    </div>
+</div>        
 {%else%}
 <p>You need to login to view this page</p>
 <a href="/login" method = "GET">Login</a>

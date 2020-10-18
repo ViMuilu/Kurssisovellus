@@ -1,51 +1,78 @@
-Menu
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<title>Courseapp</title>
 {% if session.username %}
-<p>User: {{ session.username }}</p>
-<a href="/login" method = "GET">Log out</a>
-{% endif %}
+<div class="container">
+    <div class="row">
+       
+        {% if session.accountType == 1 %}
+        <div class="col-4">
+            <h1>Menu</h1>
+            <p>User: {{ session.username }}</p>
+            <a href="/login" method = "GET">Log out</a>
+        </div>
+        <div class="col-4">
+            <h1>Courses</h1>
+            {% for course in courses %}
+            <form action="/courseInfo" method="POST"> 
+                <input type="hidden" name="onCourse" value="0"> 
+                <input type="hidden" name="name" value="{{course}}"> 
+                <input type="submit" value="{{course}}">
+            </form>
+            {% endfor %}
+        </div>
+        
+        <div class="col-4">
+            <h1> Your Courses</h1>
+                {% for course in userCourses %}
+    
+                <form action="/courseInfo" method="POST">
+                    <input type="hidden" name="name" value="{{course}}"> 
+                    <input type="submit" value="{{course}}">
+                </form>
+    
+                {% endfor %}
+    
+        </div>
+    
+            {% endif %}
+            {% if session.accountType == 2 %}
+            <div class="col-4">
+                <h1>Menu</h1>
+                <p>User: {{ session.username }}</p>
+               
+                <form action="/course" method="GET">
+                    <p><input type="submit" value="Create a new course"></p>   
+                </form>
+                <a href="/login" method = "GET">Log out</a>
+            </div>
+            <div class="col-4">
+            <h1>Courses</h1>
+            {% for course in courses %}
+            <form action="/courseInfo" method="POST">  
+                <input type="hidden" name="name" value="{{course}}"> 
+                <input type="submit" value="{{course}}">
+            </form>
+            {% endfor %}
+        </div>
+        <div class="col-4">
+            <h1>Courses that you teach</h1>
+            {% for course in teacherCourses %}
+            <form action="/courseInfo" method="POST">  
+                <input type="hidden" name="name" value="{{course}}"> 
+                <input type="submit" value="{{course}}">
+            </form>
+            {% endfor %}
+            </div>
 
-{% if session.accountType == 1 %}
-<p>Available courses:</p>
-{% for course in courses %}
-<form action="/courseInfo" method="POST"> 
-    <input type="hidden" name="onCourse" value="0"> 
-    <input type="hidden" name="name" value="{{course}}"> 
-    <input type="submit" value="{{course}}">
-</form>
-{% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{%else%}
+<p>You need to login to view this page</p>
+<a href="/login" method = "GET">Login</a>
 
+{%endif%}
 
-<p>Your courses:</p>
-{% for course in userCourses %}
-
-<form action="/courseInfo" method="POST">
-    <input type="hidden" name="name" value="{{course}}"> 
-    <input type="submit" value="{{course}}">
-</form>
-
-{% endfor %}
-
-{% endif %}
-
-{% if session.accountType == 2 %}
-<form action="/course" method="GET">
-    <p><input type="submit" value="Create a new course"></p>   
-</form>
-
-<p>Courses:</p>
-{% for course in courses %}
-<form action="/courseInfo" method="POST">  
-    <input type="hidden" name="name" value="{{course}}"> 
-    <input type="submit" value="{{course}}">
-</form>
-{% endfor %}
-
-<p>Courses that you teach</p>
-{% for course in teacherCourses %}
-<form action="/courseInfo" method="POST">  
-    <input type="hidden" name="name" value="{{course}}"> 
-    <input type="submit" value="{{course}}">
-</form>
-{% endfor %}
-
-{% endif %}

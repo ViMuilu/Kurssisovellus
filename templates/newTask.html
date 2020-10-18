@@ -1,3 +1,9 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<title>Courseapp</title>
+
+
 {% if session.username %}
 
 <script>
@@ -17,27 +23,41 @@
         return true
     }
 </script>
-<p>On this page you can create a multiple choice question.</p>
-
-<form onsubmit="return checkLenght()" action="/createTask" method="POST">
+<div class="container">
     
-    <input type="hidden" name ="course" value="{{session.courseName}}">
-    Question: 
-    <p><input type="text" name="question" id="1"></p>
-
-    <p>To create buttons for different answers separate them with "," and " " ie. answer1, answer2, answer3...</p>
-
-    Answer buttons: 
-    <p><input type="text" name="btn" id=2></p>
+    <div class="row">
+        <div class="col-6">
+            <p>On this page you can create a multiple choice question.</p>
+        </div>
+        <div class="col-6">
+            <p><a href="/courseInfo" method = "GET">Return</a></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <form onsubmit="return checkLenght()" action="/createTask" method="POST">
     
-    Correct answer:
-    <p><input type="text" name="correctAnswer" id="3"></p>
-    <input type="submit" value="Create question">
-</form>
+                <input type="hidden" name ="course" value="{{session.courseName}}">
+                Question: 
+                <p><input type="text" name="question" id="1">
+        </div>
+        <div class="col-4">    
+                
+            
+                <p>Answer buttons: 
+                <p><input type="text" name="btn" id=2>
+                <p>To create buttons for different answers separate them with "," and " " ie. answer1, answer2, answer3...
+        </div>  
+        <div class="col-4">     
+                Correct answer:
+                <p><input type="text" name="correctAnswer" id="3"></p>
+                <input type="submit" value="Create question">
+        </div> 
+            </form>
+        </div>
+    </div>  
+</div>  
 
-<form action="/exit">
-    <input type="submit" value="Return to menu">
-</form>
 {%else%}
 <p>You need to login to view this page</p>
 <a href="/login" method = "GET">Login</a>

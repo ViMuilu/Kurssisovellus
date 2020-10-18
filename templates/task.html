@@ -1,19 +1,37 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<title>Courseapp</title>
+
 {% if session.username %}
+<div class="container">
+    <div class="row">  
+        <div class="col-6">
+            <h1>{{question}}</h1>
+        </div>
+        <div class="col-6">
+            <form action="/exit">
+                <p><a href="/courseInfo" method = "GET">Return</a></p>
+            </form>
+        </div>
+    </div>
+     
+        {%for answer in answers%}
+        
+        <form action="/checkAnswer" method="POST">
+            <input type="hidden" name = "canswer" value="{{correctAnswer}}">
+            <input type="hidden" name = "answer" value="{{answer}}">
+            <input type="hidden" name = "taskname" value="{{question}}">
+            <p>Answer: <input type="submit" value="{{answer}}">
+        </form>
+        {%endfor%}
+   
 
-{{question}}
 
-{%for answer in answers%}
-<form action="/checkAnswer" method="POST">
-    <input type="hidden" name = "canswer" value="{{correctAnswer}}">
-    <input type="hidden" name = "answer" value="{{answer}}">
-    <input type="hidden" name = "taskname" value="{{question}}">
-    <input type="submit" value="{{answer}}">
-</form>
-{%endfor%}
-<a href="javascript:history.go(-1)">Return</a>
 
 {%else%}
 <p>You need to login to view this page</p>
 <a href="/login" method = "GET">Login</a>
+
 
 {%endif%}

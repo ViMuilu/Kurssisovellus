@@ -1,7 +1,25 @@
-{% if session.username %}
-<a href="javascript:history.go(-1)">Return</a>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
-{% for stats in studentsAndTasks %}
-<p>{{stats}}</p>
-{%endfor%}
+<title>Courseapp</title>
+{% if session.username %}
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <h1>Course statistics</h1>
+        </div>
+        <div class="col-8">
+            <p><a href="/courseInfo" method = "GET">Return</a></p>
+        </div>
+    </div>
+    
+            {% for stats in studentsAndTasks %}
+            <p>{{stats}}</p>
+            {%endfor%}
+    
+</div>   
+{%else%}
+    <p>You need to login to view this page</p>
+    <a href="/login" method = "GET">Login</a>
+        
 {%endif%}
