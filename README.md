@@ -6,7 +6,7 @@
 
 ## Käyttöohje
 
-Soevelluksen etusivulla käyttäjä voi kirjautua sisään / luoda uuden tilin
+Sovelluksen etusivulla käyttäjä voi kirjautua sisään / luoda uuden tilin
 
 Kun sovellukseen kirjautuu onnistuneesti avautuu valikko. Valikosta on kaksi veriota opiskelijan/opettajan pääero näillä on, että vain opettaja voi luoda kurssin klikkaamalla "Createa a new course" painiketta.
 
